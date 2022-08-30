@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">dschaphorst_A2</string>
+    <string name="reply_header">Reply Received</string>
+    <string name="button_main">Send</string>
+    <string name="editText_main_hint">Enter Your Message Here</string>
+    <string name="message_header">Message Received</string>
+    <string name="button_second">Reply</string>
+    <string name="editText_second_hint">Enter Your Reply Here</string>
+</resources>
