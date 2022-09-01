@@ -29,13 +29,15 @@ class CreateAccount : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.btnCreate.setOnClickListener{
-            sharedPref.edit().apply{
-                putString(binding.etEmail.text.toString(), binding.etEmail.text.toString())
-                apply()
+        if (binding.btnCreate.isClickable){
+            binding.btnCreate.setOnClickListener{
+                sharedPref.edit().apply{
+                    putString(binding.etEmail.text.toString(), binding.etEmail.text.toString())
+                    apply()
+                }
+                Toast.makeText(baseContext, "Account created successfully.", Toast.LENGTH_LONG).show()
+                finish()
             }
-            Toast.makeText(baseContext, "Account created successfully.", Toast.LENGTH_LONG).show()
-            finish()
         }
         binding.btnBack.setOnClickListener{ finish() }
     }

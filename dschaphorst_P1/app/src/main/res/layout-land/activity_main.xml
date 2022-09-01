@@ -87,7 +87,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
-        android:backgroundTint="@color/green"
+        android:background="@drawable/gradient_button_background"
         android:text="@string/mainBtn1"
         android:textColor="@color/black"
         android:textStyle="bold"

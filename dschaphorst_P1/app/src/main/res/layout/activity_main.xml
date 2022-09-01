@@ -90,7 +90,7 @@
         android:text="@string/mainBtn1"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:backgroundTint="@color/green"
+        android:background="@drawable/gradient_button_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
