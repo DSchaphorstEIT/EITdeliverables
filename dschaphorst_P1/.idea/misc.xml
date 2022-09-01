@@ -3,9 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/accepted_box.xml" value="0.1295" />
+        <entry key="app/src/main/res/drawable/error_border.xml" value="0.1295" />
+        <entry key="app/src/main/res/drawable/error_box.xml" value="0.1295" />
+        <entry key="app/src/main/res/drawable/header_boarder.xml" value="0.154" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1295" />
+        <entry key="app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.1295" />
         <entry key="app/src/main/res/drawable/logo_greenflag_background.xml" value="0.22" />
+        <entry key="app/src/main/res/layout-land/activity_create_account.xml" value="0.30511463844797176" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.2805694580078125" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3443266766851142" />
+        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.3841234863953814" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2056159420289855" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/logo_greenflag.xml" value="0.3585" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/logo_greenflag_round.xml" value="0.1065" />

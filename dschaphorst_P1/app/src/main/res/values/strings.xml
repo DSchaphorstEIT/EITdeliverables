@@ -7,14 +7,21 @@
     <string name="mainText3">Request a rescue online</string>
     <string name="mainText4">Policy information</string>
     <string name="mainBtn1">Create Account</string>
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="etEmailHint">username@email.com</string>
+    <string name="etPasswordHint">See Requirements Bellow</string>
+    <string name="etConfirmHint">Confirm Password</string>
+    <string name="tvRequirementsText">Your password should have a minimum of 8 characters and contain at least one number, one uppercase and one lowercase letter. You can use special characters.</string>
+    <string name="tvConfirmText">Confirm Password</string>
+    <string name="tvEmailText">Email Address</string>
+    <string name="tvPasswordText">Create Password</string>
+    <string name="tvEmailERROR_text"> </string>
+    <string name="tvPasswordERROR_text"> </string>
+    <string name="pass_invalid">Password is invalid. See requirements bellow.</string>
+    <string name="pass_mismatch">Passwords do not match.</string>
+    <string name="email_invalid">Invalid Email Address.</string>
+    <string name="email_exists">Email address already exists.</string>
+    <string name="create_btn_txt">Create Account</string>
+    <string name="create_title">Create an Account</string>
+    <string name="back_button_desc">Back Button</string>
 
 </resources>

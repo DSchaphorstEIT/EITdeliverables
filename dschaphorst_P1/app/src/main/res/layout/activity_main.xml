@@ -9,9 +9,10 @@
 
     <ImageView
         android:id="@+id/logo_green_flag"
-        android:layout_width="305dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -75,19 +76,21 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintVertical_chainStyle="packed"
         app:drawableStartCompat="@drawable/tick"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnMain"
         app:layout_constraintStart_toStartOf="@id/text_main1"
         app:layout_constraintTop_toBottomOf="@+id/text_main3" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
+        android:id="@+id/btnMain"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
-        android:backgroundTint="#5FBC00"
+        android:padding="8dp"
+        android:drawablePadding="-15sp"
         android:text="@string/mainBtn1"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
