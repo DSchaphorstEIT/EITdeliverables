@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/eventsDisplay">
+
+    <fragment
+        android:id="@+id/eventsDisplay"
+        android:name="com.eitcat.dschaphorst_p2.eventsUI.EventsDisplay"
+        android:label="fragment_events_display"
+        tools:layout="@layout/fragment_events_display" >
+        <action
+            android:id="@+id/action_eventsDisplay_to_eventsEditor"
+            app:destination="@id/eventsEditor" />
+        <action
+            android:id="@+id/action_eventsDisplay_to_eventsDetails"
+            app:destination="@id/eventsDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventsDetails"
+        android:name="com.eitcat.dschaphorst_p2.eventsUI.EventsDetails"
+        android:label="fragment_events_details"
+        tools:layout="@layout/fragment_events_details" >
+        <action
+            android:id="@+id/action_eventsDetails_to_eventsEditor"
+            app:destination="@id/eventsEditor" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventsEditor"
+        android:name="com.eitcat.dschaphorst_p2.eventsUI.EventsEditor"
+        android:label="fragment_events_editor"
+        tools:layout="@layout/fragment_events_editor" />
+</navigation>
