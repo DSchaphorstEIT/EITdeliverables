@@ -2,10 +2,7 @@ package com.eitcat.dschaphorst_p2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.commit
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.eitcat.dschaphorst_p2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,10 +15,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         //setSupportActionBar(binding.toolbar)
+//
+//        val navController = binding.toolbar.findNavController()
+//        val appBarConfig = AppBarConfiguration(navController.graph)
+//        binding.toolbar.setupWithNavController(navController, appBarConfig)
 
-        val navController = binding.toolbar.findNavController()
-        val appBarConfig = AppBarConfiguration(navController.graph)
-        binding.toolbar.setupWithNavController(navController, appBarConfig)
-
+        binding.btnAdd.setOnClickListener{
+            binding.navHostFragment.findNavController().navigate(R.id.action_eventsDisplay_to_eventsEditor)
+        }
     }
 }

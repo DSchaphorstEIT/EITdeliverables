@@ -1,4 +1,4 @@
-package com.eitcat.dschaphorst_p2.eventsUI
+package com.eitcat.dschaphorst_p2.eventsUI.eventsView
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
