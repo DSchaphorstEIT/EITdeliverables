@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/eventsDisplay">
+    app:startDestination="@id/nav_eventsDisplay">
 
     <fragment
-        android:id="@+id/eventsDisplay"
+        android:id="@+id/nav_eventsDisplay"
         android:name="com.eitcat.dschaphorst_p2.eventsUI.eventsView.EventsDisplay"
         android:label="fragment_events_display"
         tools:layout="@layout/fragment_events_display" >
         <action
             android:id="@+id/action_eventsDisplay_to_eventsEditor"
-            app:destination="@id/eventsEditor" />
+            app:destination="@id/nav_eventsEditor" />
         <action
             android:id="@+id/action_eventsDisplay_to_eventsDetails"
-            app:destination="@id/eventsDetails" />
+            app:destination="@id/nav_eventsDetails" />
     </fragment>
     <fragment
-        android:id="@+id/eventsDetails"
+        android:id="@+id/nav_eventsDetails"
         android:name="com.eitcat.dschaphorst_p2.eventsUI.eventsView.EventsDetails"
         android:label="fragment_events_details"
         tools:layout="@layout/fragment_events_details" >
         <action
             android:id="@+id/action_eventsDetails_to_eventsEditor"
-            app:destination="@id/eventsEditor" />
+            app:destination="@id/nav_eventsEditor" />
     </fragment>
     <fragment
-        android:id="@+id/eventsEditor"
+        android:id="@+id/nav_eventsEditor"
         android:name="com.eitcat.dschaphorst_p2.eventsUI.eventsView.EventsEditor"
         android:label="fragment_events_editor"
         tools:layout="@layout/fragment_events_editor" />

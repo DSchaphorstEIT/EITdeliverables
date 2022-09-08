@@ -3,7 +3,11 @@ package com.eitcat.dschaphorst_p2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.eitcat.dschaphorst_p2.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,14 +18,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        //setSupportActionBar(binding.toolbar)
-//
-//        val navController = binding.toolbar.findNavController()
-//        val appBarConfig = AppBarConfiguration(navController.graph)
-//        binding.toolbar.setupWithNavController(navController, appBarConfig)
 
-        binding.btnAdd.setOnClickListener{
-            binding.navHostFragment.findNavController().navigate(R.id.action_eventsDisplay_to_eventsEditor)
-        }
+        val navView: BottomNavigationView = binding.navView
+        val navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfig = AppBarConfiguration(setOf(
+            R.id.nav_eventsDisplay, R.id.nav_eventsEditor
+        ))
+        setupActionBarWithNavController(navController, appBarConfig)
+        navView.setupWithNavController(navController)
     }
 }

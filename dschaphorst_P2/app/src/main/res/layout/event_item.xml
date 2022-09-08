@@ -7,49 +7,28 @@
     app:cardCornerRadius="8dp"
     android:elevation="8dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/event_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="@integer/material_motion_duration_long_1"
             android:text="EVENT_NAME"
             android:textAlignment="center"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/event_category" />
-
-        <TextView
-            android:id="@+id/event_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="EVENT_CATEGORY"
-            android:textAlignment="center"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/event_title"
-            app:layout_constraintBottom_toTopOf="@id/event_date"/>
+            android:layout_margin="16dp" />
 
         <TextView
             android:id="@+id/event_date"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="@integer/material_motion_duration_long_1"
             android:text="EVENT_DATE"
             android:textAlignment="center"
             android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@id/event_category"
-            app:layout_constraintBottom_toTopOf="@id/event_description"/>
+            />
 
-        <TextView
-            android:id="@+id/event_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="EVENT_DESCRIPTION"
-            android:textAlignment="center"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@id/event_date"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

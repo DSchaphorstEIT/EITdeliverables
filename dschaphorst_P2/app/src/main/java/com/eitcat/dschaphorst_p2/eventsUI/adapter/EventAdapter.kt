@@ -5,16 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eitcat.dschaphorst_p2.databinding.EventItemBinding
 import com.eitcat.dschaphorst_p2.model.EventData
+import com.eitcat.dschaphorst_p2.model.EventDomain
 
 class EventAdapter(
-    private val eventDataSet: MutableList<EventData> = mutableListOf(),
-    private val onEventClickHandler: (EventData) -> Unit
+    private val eventDataSet: MutableList<EventDomain> = mutableListOf(),
+    private val onEventClickHandler: (EventDomain) -> Unit
 ) : RecyclerView.Adapter<EventViewHolder>() {
 
-    fun updateEvent(newEvent: EventData){
+    fun updateEvent(newEvent: EventDomain){
+
         eventDataSet.add(newEvent).also {
             if (it) {
-                eventDataSet.sortBy { data -> data.date }
+                eventDataSet.sortBy { data -> data.eventDate }
             }
         }
         notifyItemInserted(eventDataSet.indexOf(newEvent))
@@ -33,11 +35,9 @@ class EventAdapter(
 }
 
 class EventViewHolder(private val binding: EventItemBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(event: EventData, onEventClickHandler: (EventData) -> Unit){
-        binding.eventTitle.text = event.title
-        binding.eventCategory.text = event.category ?: "Msc."
-        binding.eventDate.text = event.date.toString()
-        binding.eventDescription.text = event.description ?: "No Description"
+    fun bind(event: EventDomain, onEventClickHandler: (EventDomain) -> Unit){
+        binding.eventTitle.text = event.eventTitle
+        binding.eventDate.text = event.eventDate.toString()
 
         binding.root.setOnClickListener{
             onEventClickHandler.invoke(event)
