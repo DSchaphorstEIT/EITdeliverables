@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.eitcat.dschaphorst_p2.R
 import com.eitcat.dschaphorst_p2.databinding.FragmentEventsDetailsBinding
 import com.eitcat.dschaphorst_p2.model.EventDomain
@@ -29,18 +30,31 @@ class EventsDetails : Fragment() {
 
     }
 
+    private val viewModel by lazy {
+        ViewModelProvider(requireActivity())[SharedEventView::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        curEvent = ViewModelProvider(requireActivity())[SharedEventView::class.java].curEvent
+        curEvent = viewModel.curEvent
 
         binding.eventTitle.text = curEvent?.eventTitle
         binding.eventCategory.text = curEvent?.eventCategory
-        binding.eventDate.text = curEvent?.eventDate.toString()
+        ("${curEvent?.eventDate?.month ?: ""} " +
+                "${curEvent?.eventDate?.dayOfMonth ?: ""}, " +
+                "${curEvent?.eventDate?.year ?: ""} \n" +
+                "${curEvent?.eventDate?.hour ?: ""}: " +
+                "${curEvent?.eventDate?.minute ?: ""}"
+                ).also { binding.eventDate.text = it }
         binding.eventDescription.text = curEvent?.eventDescription
 
+        binding.btnModify.setOnClickListener {
+            viewModel.isModify = true
+            findNavController().navigate(R.id.action_eventsDetails_to_eventsEditor)
+        }
 
         return binding.root
     }

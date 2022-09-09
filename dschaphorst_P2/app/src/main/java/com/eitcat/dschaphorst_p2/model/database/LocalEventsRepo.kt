@@ -39,7 +39,7 @@ private const val TAG = "LocalEventsRepo"
 class LocalEventsRepo (private val eventsDAO: EventsDAO) {
     val readAllEvents : LiveData<List<EventDomain>> = eventsDAO.getEvents()
 
-    fun insertEvent (event: EventDomain) {
+    suspend fun insertEvent (event: EventDomain) {
         eventsDAO.insertEvents(event)
     }
 }

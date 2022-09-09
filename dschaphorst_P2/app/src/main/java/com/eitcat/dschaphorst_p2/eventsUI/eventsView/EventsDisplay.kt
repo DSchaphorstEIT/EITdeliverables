@@ -1,5 +1,6 @@
 package com.eitcat.dschaphorst_p2.eventsUI.eventsView
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -49,25 +50,20 @@ class EventsDisplay : Fragment(), ViewContractEvents {
 //            .build()
 //    }
 
-    private val allEvents by lazy {
-        ViewModelProvider(requireActivity())[SharedEventView::class.java].allEvents
+    private val viewModel by lazy {
+        ViewModelProvider(requireActivity())[SharedEventView::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        presenter.init(this)
-        allEvents.observe(this) { events ->
-            events.forEach() { event ->
-                eventAdapter.updateEvent(event)
-            }
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding.detailsRecycleView.apply {
+        binding.displayRecycleView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = eventAdapter
         }
@@ -79,6 +75,10 @@ class EventsDisplay : Fragment(), ViewContractEvents {
 //            "This should be the first entry in the list."
 //        ))
 
+
+        viewModel.allEvents.observe(viewLifecycleOwner) { events ->
+            eventAdapter.setData(events)
+        }
         return binding.root
     }
 

@@ -30,5 +30,12 @@
         android:id="@+id/nav_eventsEditor"
         android:name="com.eitcat.dschaphorst_p2.eventsUI.eventsView.EventsEditor"
         android:label="fragment_events_editor"
-        tools:layout="@layout/fragment_events_editor" />
+        tools:layout="@layout/fragment_events_editor" >
+        <action
+            android:id="@+id/action_nav_eventsEditor_to_nav_eventsDisplay"
+            app:destination="@id/nav_eventsDisplay" />
+        <action
+            android:id="@+id/action_nav_eventsEditor_to_nav_eventsDetails"
+            app:destination="@id/nav_eventsDetails" />
+    </fragment>
 </navigation>

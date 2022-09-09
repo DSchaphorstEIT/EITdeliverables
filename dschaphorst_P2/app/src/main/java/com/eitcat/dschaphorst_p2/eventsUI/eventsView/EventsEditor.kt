@@ -1,5 +1,6 @@
 package com.eitcat.dschaphorst_p2.eventsUI.eventsView
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -100,8 +101,26 @@ class EventsEditor : Fragment()/*, ViewContractEditor */{
                     binding.ietDescriptionEditor.text.toString()
                 )
             )
+            Toast.makeText(requireContext(), "Successfully added event.", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_nav_eventsEditor_to_nav_eventsDisplay)
+        }
 
-            findNavController().popBackStack()
+
+
+        if (viewModel.isModify) {
+            binding.ietTitleEditor.isFocusable = false
+            binding.ietTitleEditor.setText(viewModel.curEvent?.eventTitle ?: "")
+            binding.ietCategoryEditor.setText(viewModel.curEvent?.eventCategory ?: "")
+            binding.ietDescriptionEditor.setText(viewModel.curEvent?.eventDescription ?: "")
+            val now = LocalDateTime.now()
+            binding.timeEditor.hour = viewModel.curEvent?.eventDate?.hour ?: now.hour
+            binding.timeEditor.minute = viewModel.curEvent?.eventDate?.minute ?: now.minute
+            binding.dateEditor.updateDate(
+                viewModel.curEvent?.eventDate?.year ?: now.year,
+                viewModel.curEvent?.eventDate?.monthValue ?: now.monthValue,
+                viewModel.curEvent?.eventDate?.dayOfMonth ?: now.dayOfMonth
+            )
+            viewModel.isModify = false
         }
     }
 

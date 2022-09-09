@@ -8,13 +8,13 @@ import io.reactivex.Completable
 @Dao
 interface EventsDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEvents(events: EventDomain): Completable
+    suspend fun insertEvents(events: EventDomain)
 
-    @Query("SELECT * from eventdomain")
+    @Query("SELECT * from event_table")
     fun getEvents(): LiveData<List<EventDomain>>
-
-    @Query("SELECT * from eventdomain WHERE eventtitle LIKE :title")
-    fun findEvent(title: String): LiveData<EventDomain>
+//
+//    @Query("SELECT * from `event-db` WHERE eventtitle LIKE :title")
+//    fun findEvent(title: String): LiveData<EventDomain>
 
     @Delete
     fun deleteEvent(eventDomain: EventDomain): Completable

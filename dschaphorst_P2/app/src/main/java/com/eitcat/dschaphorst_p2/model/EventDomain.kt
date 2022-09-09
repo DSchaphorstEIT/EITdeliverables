@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import java.time.LocalDateTime
 
-@Entity
+@Entity(tableName = "event_table")
 data class EventDomain(
     @PrimaryKey val eventTitle: String,
     val eventCategory: String,

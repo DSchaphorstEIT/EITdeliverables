@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.eitcat.dschaphorst_p2.model.EventDomain
 import com.eitcat.dschaphorst_p2.model.database.EventsDB
 import com.eitcat.dschaphorst_p2.model.database.LocalEventsRepo
-import okhttp3.Dispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SharedEventView(application: Application) : AndroidViewModel(application) {
+    var isModify : Boolean = false
     var curEvent : EventDomain? = null
     var allEvents : LiveData<List<EventDomain>>
     private val repo: LocalEventsRepo
@@ -30,9 +32,8 @@ class SharedEventView(application: Application) : AndroidViewModel(application) 
     }
 
     fun insertEvent (event: EventDomain){
-//        viewModelScope.Launch(Dispatcher.IO) { TODO Why is .Launch not allowed?
-//            repo.insertEvent(event)
-//        }
-        repo.insertEvent(event)
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.insertEvent(event)
+        }
     }
 }

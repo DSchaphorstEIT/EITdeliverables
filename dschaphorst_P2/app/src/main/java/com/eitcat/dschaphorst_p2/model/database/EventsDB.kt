@@ -22,7 +22,7 @@ abstract class EventsDB : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    EventsDB::class.java, "temp-event-db"
+                    EventsDB::class.java, "event_db"
                 ).build()
                 INSTANCE = instance
                 return instance
