@@ -83,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@id/tilCategory_editor" >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/eitDescription_editor"
+                android:id="@+id/ietDescription_editor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"

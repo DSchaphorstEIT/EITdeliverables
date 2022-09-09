@@ -1,6 +1,5 @@
 package com.eitcat.dschaphorst_p2.eventsUI.eventsView
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,6 @@ import com.eitcat.dschaphorst_p2.eventsUI.eventsPres.ViewContractEvents
 import com.eitcat.dschaphorst_p2.model.EventDomain
 import com.eitcat.dschaphorst_p2.model.database.EventsDB
 import com.eitcat.dschaphorst_p2.model.util.SharedEventView
-import java.time.LocalDateTime
 
 private const val TAG = "EventsDisplay"
 
@@ -31,10 +31,10 @@ class EventsDisplay : Fragment(), ViewContractEvents {
     private val binding by lazy {
         FragmentEventsDisplayBinding.inflate(layoutInflater)
     }
-
-    private val presenter: EventsDisplayPres by lazy {
-        EventsDisplayPresImpl(eventsDAO = eventsDB.getEventsDao())
-    }
+//
+//    private val presenter: EventsDisplayPres by lazy {
+//        EventsDisplayPresImpl(eventsDAO = eventsDB.getEventsDao())
+//    }
 
     private val eventAdapter by lazy {
         EventAdapter() {
@@ -43,14 +43,24 @@ class EventsDisplay : Fragment(), ViewContractEvents {
             Toast.makeText(context, "Click from highorder: ${it.eventTitle}", Toast.LENGTH_LONG).show()
         }
     }
+//
+//    private val eventsDB by lazy {
+//        Room.databaseBuilder(requireActivity().applicationContext, EventsDB::class.java, "event-db")
+//            .build()
+//    }
 
-    private val eventsDB by lazy {
-        Room.databaseBuilder(requireActivity().applicationContext, EventsDB::class.java, "event-db")
-            .build()
+    private val allEvents by lazy {
+        ViewModelProvider(requireActivity())[SharedEventView::class.java].allEvents
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        presenter.init(this)
+        allEvents.observe(this) { events ->
+            events.forEach() { event ->
+                eventAdapter.updateEvent(event)
+            }
+        }
     }
 
     override fun onCreateView(
@@ -61,15 +71,13 @@ class EventsDisplay : Fragment(), ViewContractEvents {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = eventAdapter
         }
-
-        eventAdapter.updateEvent( EventDomain(
-            "Initial Test",
-            "Testing",
-            LocalDateTime.now(),
-            "This should be the first entry in the list."
-        ))
-
-        presenter.getEvents()
+//
+//        eventAdapter.updateEvent( EventDomain(
+//            "Initial Test",
+//            "Testing",
+//            LocalDateTime.now(),
+//            "This should be the first entry in the list."
+//        ))
 
         return binding.root
     }
@@ -82,9 +90,9 @@ class EventsDisplay : Fragment(), ViewContractEvents {
     override fun onSuccess(events: List<EventDomain>) {
         Toast.makeText(requireContext(), "Success: ${events.first().eventTitle}", Toast.LENGTH_LONG).show()
         Log.d(TAG, "onSuccess: $events")
-        events.forEach{ event ->
-            eventAdapter.updateEvent(event)
-        }
+//        events.forEach{ event ->
+//            eventAdapter.updateEvent(event)
+//        }
     }
 
     override fun onFailure(error: Throwable) {

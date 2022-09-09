@@ -11,8 +11,6 @@ import com.eitcat.dschaphorst_p2.databinding.FragmentEventsDetailsBinding
 import com.eitcat.dschaphorst_p2.model.EventDomain
 import com.eitcat.dschaphorst_p2.model.util.SharedEventView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "eventCard"
 
 /**
@@ -21,7 +19,6 @@ private const val ARG_PARAM1 = "eventCard"
  * create an instance of this fragment.
  */
 class EventsDetails : Fragment() {
-    // TODO: Rename and change types of parameters
     private var curEvent: EventDomain? = null
 
     private val binding by lazy {
@@ -46,23 +43,5 @@ class EventsDetails : Fragment() {
 
 
         return binding.root
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @return A new instance of fragment EventsDetails.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String) =
-            EventsDetails().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
     }
 }
