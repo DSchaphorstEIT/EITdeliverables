@@ -1,5 +1,9 @@
 package com.eitcat.dschaphorst_p2.eventsUI.eventsView
 
+import android.app.*
+import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.eitcat.dschaphorst_p2.R
 import com.eitcat.dschaphorst_p2.databinding.FragmentEventsDetailsBinding
 import com.eitcat.dschaphorst_p2.model.EventDomain
-import com.eitcat.dschaphorst_p2.model.util.SharedEventView
+import com.eitcat.dschaphorst_p2.model.util.*
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.util.*
 
 private const val ARG_PARAM1 = "eventCard"
 
@@ -25,13 +32,16 @@ class EventsDetails : Fragment() {
     private val binding by lazy {
         FragmentEventsDetailsBinding.inflate(layoutInflater)
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     private val viewModel by lazy {
         ViewModelProvider(requireActivity())[SharedEventView::class.java]
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        createNotifChannel()
+        binding.btnNotif.setOnClickListener { scheduleNotif()}
     }
 
     override fun onCreateView(
@@ -58,4 +68,55 @@ class EventsDetails : Fragment() {
 
         return binding.root
     }
+
+    private fun scheduleNotif() {
+        val intent = Intent(requireActivity().applicationContext, Notifications::class.java)
+        val title = viewModel.curEvent?.eventTitle ?: "No Title for Event"
+        val msg = viewModel.curEvent?.eventDescription ?: "No Description for event."
+        intent.putExtra(notifTitle, title)
+        intent.putExtra(notifMessage, msg)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            requireActivity().applicationContext,
+            notifID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val timeInMills = viewModel.curEvent?.eventDate?.toInstant(ZoneOffset.UTC)?.toEpochMilli() ?: LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli()
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            timeInMills,
+            pendingIntent
+        )
+        showAlert(title, msg)
+    }
+
+    private fun showAlert(title: String, msg: String) {
+        val date = curEvent?.eventDate ?: LocalDateTime.now()
+        val dateStr = ("${date.month} " +
+                "${date.dayOfMonth}, " +
+                "${date.year} - " +
+                (if (date.hour > 12) "${date.hour -12}:" else "${date.hour}") +
+                (if (date.minute < 10) "0" else "") +
+                "${date.minute}"
+                )
+        AlertDialog.Builder(requireActivity())
+            .setTitle("Notification Scheduled")
+            .setMessage("Title: $title \nMessage: $msg \nAt: $dateStr")
+            .setPositiveButton("Okay"){_,_ ->}
+            .show()
+    }
+
+    private fun createNotifChannel() {
+        val name = "Notif Channel"
+        val desc = "A description of the channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(notifChannel, name, importance)
+        channel.description = desc
+        val notificationManager = requireActivity().getSystemService(NOTIFICATION_SERVICE)  as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
 }

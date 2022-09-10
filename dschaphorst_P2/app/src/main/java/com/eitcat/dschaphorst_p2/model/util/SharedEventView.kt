@@ -9,6 +9,7 @@ import com.eitcat.dschaphorst_p2.model.database.EventsDB
 import com.eitcat.dschaphorst_p2.model.database.LocalEventsRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 class SharedEventView(application: Application) : AndroidViewModel(application) {
     var isModify : Boolean = false
@@ -36,4 +37,5 @@ class SharedEventView(application: Application) : AndroidViewModel(application) 
             repo.insertEvent(event)
         }
     }
+
 }

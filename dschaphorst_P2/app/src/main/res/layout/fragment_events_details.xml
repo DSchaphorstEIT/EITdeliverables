@@ -52,11 +52,22 @@
 
         <Button
             android:id="@+id/btn_modify"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             android:text="Edit Event"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_notif"
+            app:layout_constraintTop_toBottomOf="@id/event_description"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_notif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:text="Add Notification"
+            app:layout_constraintStart_toEndOf="@id/btn_modify"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/event_description"
             app:layout_constraintBottom_toBottomOf="parent"/>
