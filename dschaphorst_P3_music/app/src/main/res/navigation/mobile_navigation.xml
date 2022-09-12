@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.eitcat.dschaphorst_p3_music.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_songDetailsFragment"
+            app:destination="@id/songDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.eitcat.dschaphorst_p3_music.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_nav_search_to_songDetailsFragment"
+            app:destination="@id/songDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_library"
+        android:name="com.eitcat.dschaphorst_p3_music.ui.library.LibraryFragment"
+        android:label="@string/title_library"
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_nav_library_to_songDetailsFragment"
+            app:destination="@id/songDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/songDetailsFragment"
+        android:name="com.eitcat.dschaphorst_p3_music.ui.songDetails.SongDetailsFragment"
+        android:label="fragment_song_details"
+        tools:layout="@layout/fragment_song_details" />
+</navigation>
