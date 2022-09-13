@@ -23,8 +23,8 @@ interface ApiHelper {
 
     companion object {
         const val BASE_URL = "https://itunes.apple.com/"
-        const val SEARCH_CLASSIC ="${BASE_URL}search?term=classic&amp;media=music&amp;entity=song&amp;limit=50"
-        const val SEARCH_POP = "${BASE_URL}search?term=pop&amp;media=music&amp;entity=song&amp;limit=50"
-        const val SEARCH_ROCK = "${BASE_URL}search?term=rock&amp;media=music&amp;entity=song&amp;limit=50"
+        const val SEARCH_CLASSIC ="search?term=classic&amp;media=music&amp;entity=song&amp;limit=50"
+        const val SEARCH_POP = "search?term=pop&amp;media=music&amp;entity=song&amp;limit=50"
+        const val SEARCH_ROCK = "search?term=rock&amp;media=music&amp;entity=song&amp;limit=50"
     }
 }

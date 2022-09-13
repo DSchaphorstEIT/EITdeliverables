@@ -29,7 +29,6 @@ object ApiService {
     val musicService : ApiHelper by lazy {
         Retrofit.Builder()
             .baseUrl(ApiHelper.BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
