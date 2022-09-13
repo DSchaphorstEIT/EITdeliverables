@@ -1,70 +1,52 @@
 package com.eitcat.dschaphorst_p3_music.data.model
 
 import androidx.room.Entity
-import com.google.gson.annotations.SerializedName
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "song_list")
 data class Song(
-    @SerializedName("wrapperType")
-    val wrapperType: String = "",
-    @SerializedName("kind")
-    val kind: String = "",
-    @SerializedName("artistId")
-    val artistId: Int = 0,
-    @SerializedName("collectionId")
-    val collectionId: Int = 0,
-    @SerializedName("trackId")
-    val trackId: Int = 0,
-    @SerializedName("artistName")
+    @PrimaryKey val trackID: Int,
     val artistName: String = "",
-    @SerializedName("collectionName")
     val collectionName: String = "",
-    @SerializedName("trackName")
     val trackName: String = "",
-    @SerializedName("collectionCensoredName")
-    val collectionCensoredName: String = "",
-    @SerializedName("trackCensoredName")
-    val trackCensoredName: String = "",
-    @SerializedName("artistViewUrl")
     val artistViewUrl: String = "",
-    @SerializedName("collectionViewUrl")
     val collectionViewUrl: String = "",
-    @SerializedName("trackViewUrl")
     val trackViewUrl: String = "",
-    @SerializedName("previewUrl")
     val previewUrl: String = "",
-    @SerializedName("artworkUrl30")
     val artworkUrl30: String = "",
-    @SerializedName("artworkUrl60")
     val artworkUrl60: String = "",
-    @SerializedName("artworkUrl100")
     val artworkUrl100: String = "",
-    @SerializedName("collectionPrice")
-    val collectionPrice: Double = 0.0,
-    @SerializedName("trackPrice")
-    val trackPrice: Double = 0.0,
-    @SerializedName("releaseDate")
-    val releaseDateStr: String = "",
-    @SerializedName("collectionExplicitness")
-    val collectionExplicitness: String = "",
-    @SerializedName("trackExplicitness")
-    val trackExplicitness: String = "",
-    @SerializedName("discCount")
-    val discCount: Int = 0,
-    @SerializedName("discNumber")
-    val discNumber: Int = 0,
-    @SerializedName("trackCount")
-    val trackCount: Int = 0,
-    @SerializedName("trackNumber")
-    val trackNumber: Int = 0,
-    @SerializedName("trackTimeMillis")
-    val trackTimeMillis: Int = 0,
-    @SerializedName("country")
-    val country: String = "",
-    @SerializedName("currency")
-    val currency: String = "",
-    @SerializedName("primaryGenreName")
-    val primaryGenreName: String = "",
-    @SerializedName("isStreamable")
-    val isStreamable: Boolean = false
 )
+
+fun List<MusicNetworkData>
+        .mapToSongList(): List<Song> =
+    this.map {
+        Song(
+            trackID = it.trackId,
+            artistName = it.artistName,
+            collectionName = it.collectionName,
+            trackName = it.trackName,
+            artistViewUrl = it.artistViewUrl,
+            collectionViewUrl = it.collectionViewUrl,
+            trackViewUrl = it.trackViewUrl,
+            previewUrl = it.previewUrl,
+            artworkUrl30 = it.artworkUrl30,
+            artworkUrl60 = it.artworkUrl60,
+            artworkUrl100 = it.artworkUrl100
+        )
+    }
+
+fun MusicNetworkData.mapToSong(): Song =
+    Song(
+        trackID = this.trackId,
+        artistName = this.artistName,
+        collectionName = this.collectionName,
+        trackName = this.trackName,
+        artistViewUrl = this.artistViewUrl,
+        collectionViewUrl = this.collectionViewUrl,
+        trackViewUrl = this.trackViewUrl,
+        previewUrl = this.previewUrl,
+        artworkUrl30 = this.artworkUrl30,
+        artworkUrl60 = this.artworkUrl60,
+        artworkUrl100 = this.artworkUrl100
+    )

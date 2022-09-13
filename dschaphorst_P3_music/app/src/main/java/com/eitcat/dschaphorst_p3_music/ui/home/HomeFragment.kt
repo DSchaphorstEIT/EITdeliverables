@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.eitcat.dschaphorst_p3_music.R
 import com.eitcat.dschaphorst_p3_music.databinding.FragmentHomeBinding
 import com.eitcat.dschaphorst_p3_music.ui.songDetails.SongDetailsViewModel
@@ -44,7 +45,12 @@ class HomeFragment : Fragment() {
 //        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
+        binding.homeRecycle.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = homeAdapter
+        }
 
+        homeViewModel.pullMusicData()
         homeViewModel.songsDataSet.observe(viewLifecycleOwner) { songs ->
             homeAdapter.setData(songs)
         }

@@ -5,7 +5,7 @@ import com.eitcat.dschaphorst_p3_music.data.api.ApiHelper
 import com.eitcat.dschaphorst_p3_music.data.model.Song
 import io.reactivex.Single
 
-class Repo(
+class LocalRepo(
 //    private val apiHelper: ApiHelper,
     private val musicDAO: MusicDAO
     ) {
@@ -15,7 +15,7 @@ class Repo(
 //    }
     val localMusicData : LiveData<List<Song>> = musicDAO.getMusic()
 
-    suspend fun insertSong (song: Song) {
-        musicDAO.insertSong(song)
+    fun insertSong (songs: List<Song>) {
+        musicDAO.insertSongs(songs)
     }
 }
