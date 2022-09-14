@@ -1,7 +1,5 @@
 package com.eitcat.dschaphorst_p3_music.data.api
 
-import com.eitcat.dschaphorst_p3_music.data.model.Song
-import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -30,6 +28,7 @@ object ApiService {
         Retrofit.Builder()
             .baseUrl(ApiHelper.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .build()
             .create(ApiHelper::class.java)

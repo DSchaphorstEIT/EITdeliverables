@@ -18,35 +18,35 @@ data class Song(
     val artworkUrl100: String = "",
 )
 
-fun List<MusicNetworkData>
+fun List<SongData>
         .mapToSongList(): List<Song> =
     this.map {
         Song(
-            trackID = it.trackId,
-            artistName = it.artistName,
-            collectionName = it.collectionName,
-            trackName = it.trackName,
-            artistViewUrl = it.artistViewUrl,
-            collectionViewUrl = it.collectionViewUrl,
-            trackViewUrl = it.trackViewUrl,
-            previewUrl = it.previewUrl,
-            artworkUrl30 = it.artworkUrl30,
-            artworkUrl60 = it.artworkUrl60,
-            artworkUrl100 = it.artworkUrl100
+            trackID = it.trackId ?: 0,
+            artistName = it.artistName ?: "",
+            collectionName = it.collectionName ?: "",
+            trackName = it.trackName ?: "",
+            artistViewUrl = it.artistViewUrl ?: "",
+            collectionViewUrl = it.collectionViewUrl ?: "",
+            trackViewUrl = it.trackViewUrl ?: "",
+            previewUrl = it.previewUrl ?: "",
+            artworkUrl30 = it.artworkUrl30 ?: "",
+            artworkUrl60 = it.artworkUrl60 ?: "",
+            artworkUrl100 = it.artworkUrl100 ?: ""
         )
     }
 
-fun MusicNetworkData.mapToSong(): Song =
+fun SongData.mapToSong(): Song =
     Song(
-        trackID = this.trackId,
-        artistName = this.artistName,
-        collectionName = this.collectionName,
-        trackName = this.trackName,
-        artistViewUrl = this.artistViewUrl,
-        collectionViewUrl = this.collectionViewUrl,
-        trackViewUrl = this.trackViewUrl,
-        previewUrl = this.previewUrl,
-        artworkUrl30 = this.artworkUrl30,
-        artworkUrl60 = this.artworkUrl60,
-        artworkUrl100 = this.artworkUrl100
+        trackID = this.trackId ?: 0,
+        artistName = this.artistName ?: "",
+        collectionName = this.collectionName ?: "",
+        trackName = this.trackName ?: "",
+        artistViewUrl = this.artistViewUrl ?: "",
+        collectionViewUrl = this.collectionViewUrl ?: "",
+        trackViewUrl = this.trackViewUrl ?: "",
+        previewUrl = this.previewUrl ?: "",
+        artworkUrl30 = this.artworkUrl30 ?: "",
+        artworkUrl60 = this.artworkUrl60 ?: "",
+        artworkUrl100 = this.artworkUrl100 ?: ""
     )

@@ -17,6 +17,7 @@
             android:layout_height="68dp"
             android:padding="4dp"
             android:layout_margin="4dp"
+            android:src="@drawable/ic_baseline_broken_image_24"
             app:flow_horizontalAlign="start"
             app:flow_verticalAlign="center"
             app:layout_constraintStart_toStartOf="parent"
