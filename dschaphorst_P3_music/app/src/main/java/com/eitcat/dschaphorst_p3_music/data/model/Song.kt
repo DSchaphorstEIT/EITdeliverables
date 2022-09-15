@@ -6,47 +6,47 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "song_list")
 data class Song(
     @PrimaryKey val trackID: Int,
-    val artistName: String = "",
-    val collectionName: String = "",
-    val trackName: String = "",
-    val artistViewUrl: String = "",
-    val collectionViewUrl: String = "",
-    val trackViewUrl: String = "",
-    val previewUrl: String = "",
-    val artworkUrl30: String = "",
-    val artworkUrl60: String = "",
-    val artworkUrl100: String = "",
+    val artistName: String = "Invalid Name",
+    val collectionName: String = "Invalid Name",
+    val trackName: String = "Invalid Name",
+    val artistViewUrl: String = "Invalid URL",
+    val collectionViewUrl: String = "Invalid URL",
+    val trackViewUrl: String = "Invalid URL",
+    val previewUrl: String = "Invalid URL",
+    val artworkUrl30: String = "Invalid URL",
+    val artworkUrl60: String = "Invalid URL",
+    val artworkUrl100: String = "Invalid URL",
 )
 
-fun List<SongData>
+fun List<SongData?>?
         .mapToSongList(): List<Song> =
-    this.map {
+    this?.map {
         Song(
-            trackID = it.trackId ?: 0,
-            artistName = it.artistName ?: "",
-            collectionName = it.collectionName ?: "",
-            trackName = it.trackName ?: "",
-            artistViewUrl = it.artistViewUrl ?: "",
-            collectionViewUrl = it.collectionViewUrl ?: "",
-            trackViewUrl = it.trackViewUrl ?: "",
-            previewUrl = it.previewUrl ?: "",
-            artworkUrl30 = it.artworkUrl30 ?: "",
-            artworkUrl60 = it.artworkUrl60 ?: "",
-            artworkUrl100 = it.artworkUrl100 ?: ""
+            trackID = it?.trackId ?: 0,
+            artistName = it?.artistName ?: "Invalid Name",
+            collectionName = it?.collectionName ?: "Invalid Name",
+            trackName = it?.trackName ?: "Invalid Name",
+            artistViewUrl = it?.artistViewUrl ?: "Invalid URL",
+            collectionViewUrl = it?.collectionViewUrl ?: "Invalid URL",
+            trackViewUrl = it?.trackViewUrl ?: "Invalid URL",
+            previewUrl = it?.previewUrl ?: "Invalid URL",
+            artworkUrl30 = it?.artworkUrl30 ?: "Invalid URL",
+            artworkUrl60 = it?.artworkUrl60 ?: "Invalid URL",
+            artworkUrl100 = it?.artworkUrl100 ?: "Invalid URL"
         )
-    }
+    } ?: emptyList()
 
 fun SongData.mapToSong(): Song =
     Song(
         trackID = this.trackId ?: 0,
-        artistName = this.artistName ?: "",
-        collectionName = this.collectionName ?: "",
-        trackName = this.trackName ?: "",
-        artistViewUrl = this.artistViewUrl ?: "",
-        collectionViewUrl = this.collectionViewUrl ?: "",
-        trackViewUrl = this.trackViewUrl ?: "",
-        previewUrl = this.previewUrl ?: "",
-        artworkUrl30 = this.artworkUrl30 ?: "",
-        artworkUrl60 = this.artworkUrl60 ?: "",
-        artworkUrl100 = this.artworkUrl100 ?: ""
+        artistName = this.artistName ?: "Invalid Name",
+        collectionName = this.collectionName ?: "Invalid Name",
+        trackName = this.trackName ?: "Invalid Name",
+        artistViewUrl = this.artistViewUrl ?: "Invalid URL",
+        collectionViewUrl = this.collectionViewUrl ?: "Invalid URL",
+        trackViewUrl = this.trackViewUrl ?: "Invalid URL",
+        previewUrl = this.previewUrl ?: "Invalid URL",
+        artworkUrl30 = this.artworkUrl30 ?: "Invalid URL",
+        artworkUrl60 = this.artworkUrl60 ?: "Invalid URL",
+        artworkUrl100 = this.artworkUrl100 ?: "Invalid URL"
     )

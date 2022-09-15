@@ -1,0 +1,94 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "180192838e1a5936219c004021a00c14",
+    "entities": [
+      {
+        "tableName": "song_list",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`trackID` INTEGER NOT NULL, `artistName` TEXT NOT NULL, `collectionName` TEXT NOT NULL, `trackName` TEXT NOT NULL, `artistViewUrl` TEXT NOT NULL, `collectionViewUrl` TEXT NOT NULL, `trackViewUrl` TEXT NOT NULL, `previewUrl` TEXT NOT NULL, `artworkUrl30` TEXT NOT NULL, `artworkUrl60` TEXT NOT NULL, `artworkUrl100` TEXT NOT NULL, PRIMARY KEY(`trackID`))",
+        "fields": [
+          {
+            "fieldPath": "trackID",
+            "columnName": "trackID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artistName",
+            "columnName": "artistName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "collectionName",
+            "columnName": "collectionName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trackName",
+            "columnName": "trackName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artistViewUrl",
+            "columnName": "artistViewUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "collectionViewUrl",
+            "columnName": "collectionViewUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trackViewUrl",
+            "columnName": "trackViewUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previewUrl",
+            "columnName": "previewUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artworkUrl30",
+            "columnName": "artworkUrl30",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artworkUrl60",
+            "columnName": "artworkUrl60",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artworkUrl100",
+            "columnName": "artworkUrl100",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "trackID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '180192838e1a5936219c004021a00c14')"
+    ]
+  }
+}

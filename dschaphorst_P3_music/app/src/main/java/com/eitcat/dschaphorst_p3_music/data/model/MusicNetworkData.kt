@@ -7,5 +7,5 @@ data class MusicNetworkData(
     @SerializedName("resultCount")
     val resultCount: Int? = null,
     @SerializedName("results")
-    val songData: List<SongData>? = null
+    val songData: List<SongData?>? = null
 )
