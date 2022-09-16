@@ -9,7 +9,7 @@ interface ApiHelper {
 
     @GET(PATH_SEARCH)
     suspend fun getMusic(
-        @Query("term") genre: String = "techno",
+        @Query("term") term: String = "techno",
         @Query("amp;media") media: String = "music",
         @Query("amp;entity") entity: String = "song",
         @Query("amp;limit") limit: Int = 50,

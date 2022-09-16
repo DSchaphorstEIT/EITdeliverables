@@ -8,8 +8,11 @@ import io.reactivex.Single
 class LocalRepo(
     private val musicDAO: MusicDAO
     ) {
-    val localMusicData : LiveData<List<Song>> = musicDAO.getMusic()
+    var localMusicData : LiveData<List<Song>> = getMusicData()
 
+    fun getMusicData() : LiveData<List<Song>> {
+        return musicDAO.getMusic()
+    }
     fun insertSongs (songs: List<Song>?) {
         if (songs != null) musicDAO.insertSongs(songs)
     }

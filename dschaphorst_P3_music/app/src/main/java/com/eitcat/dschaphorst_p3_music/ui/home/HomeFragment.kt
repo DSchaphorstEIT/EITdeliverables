@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.eitcat.dschaphorst_p3_music.MainActivity
 import com.eitcat.dschaphorst_p3_music.R
 import com.eitcat.dschaphorst_p3_music.databinding.FragmentHomeBinding
-import com.eitcat.dschaphorst_p3_music.ui.songDetails.SongDetailsViewModel
 import com.eitcat.dschaphorst_p3_music.util.UIState
 
 class HomeFragment : Fragment() {
@@ -31,12 +28,15 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private val homeViewModel by lazy {
+        ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -54,7 +54,8 @@ class HomeFragment : Fragment() {
                 is UIState.SUCCESS -> {
                     binding.loadingSpinner.visibility = View.GONE
                     binding.homeRecycle.visibility = View.VISIBLE
-                    homeAdapter.setData(state.songs)
+                    homeViewModel.songHistList = state.songs
+                    homeAdapter.setData(homeViewModel.songHistList)
                 }
                 is UIState.ERROR -> {
                     binding.loadingSpinner.visibility = View.GONE
@@ -75,9 +76,33 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel.pullMusicData()
+        if (homeViewModel.songHistList.isEmpty()) {
+            homeViewModel.pullMusicData()
+        } else {
+            homeAdapter.setData(homeViewModel.songHistList)
+        }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(!homeViewModel.networkState.checkInternetConnection()){
+            homeViewModel.addCurrentToDatabase()
+            homeViewModel.getFromDatabase().observe(viewLifecycleOwner) {
+                homeAdapter.setData(it)
+            }
+            AlertDialog.Builder(context)
+                .setTitle("Error Occurred")
+                .setMessage("Internet connection lost, using local data.")
+                .setNegativeButton("DISMISS") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
+        } else {
+            homeAdapter.setData(homeViewModel.songHistList)
+        }
     }
 
     override fun onDestroyView() {
