@@ -11,6 +11,8 @@ import com.eitcat.dschaphorst_p3_music.data.model.mapToSongList
 import com.eitcat.dschaphorst_p3_music.util.FailureResponseFromServer
 import com.eitcat.dschaphorst_p3_music.util.NullResponseFromServer
 import com.eitcat.dschaphorst_p3_music.util.UIState
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -24,6 +26,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val _musicStatus: MutableLiveData<UIState> = MutableLiveData(UIState.LOADING)
     val musicStatus: LiveData<UIState> get() = _musicStatus
     var curSong: Song? = null
+
+    val player : ExoPlayer by lazy {
+        ExoPlayer.Builder(application.baseContext).build()
+    }
 
     init {
         val musicDAO = MusicDB.getDB(application).getMusicDAO()
@@ -58,9 +64,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun insertSongs (songs: List<Song>) {
-        viewModelScope.launch(Dispatchers.IO){
-            repo.insertSongs(songs)
+    fun addSongToQueue(song: Song? = curSong){
+        if (song != null) {
+            player.addMediaItem(MediaItem.fromUri(song.previewUrl))
+        }
+    }
+
+    fun play(){
+        if(!player.isPlaying) {
+            player.prepare()
+            player.play()
         }
     }
 }

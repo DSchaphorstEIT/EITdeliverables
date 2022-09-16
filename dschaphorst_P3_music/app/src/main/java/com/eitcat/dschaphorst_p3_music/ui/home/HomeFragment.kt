@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.eitcat.dschaphorst_p3_music.MainActivity
 import com.eitcat.dschaphorst_p3_music.R
 import com.eitcat.dschaphorst_p3_music.databinding.FragmentHomeBinding
 import com.eitcat.dschaphorst_p3_music.ui.songDetails.SongDetailsViewModel
@@ -27,9 +28,6 @@ class HomeFragment : Fragment() {
         HomeAdapter() {
             ViewModelProvider(requireActivity())[HomeViewModel::class.java].curSong = it
             binding.root.findNavController().navigate(R.id.action_nav_home_to_songDetailsFragment)
-            Toast.makeText(context,
-                "Now Playing: ${it.trackName} by ${it.artistName}",
-                Toast.LENGTH_LONG).show()
         }
     }
 
