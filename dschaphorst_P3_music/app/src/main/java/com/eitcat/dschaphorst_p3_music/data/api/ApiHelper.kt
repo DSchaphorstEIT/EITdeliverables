@@ -5,6 +5,11 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Interface used to control the possible Api calls. Holds the [serviceApi] object that
+ * will be called from any fragment that needs to make an Api call.
+ *
+ */
 interface ApiHelper {
 
     @GET(PATH_SEARCH)

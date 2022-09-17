@@ -20,6 +20,11 @@ import com.eitcat.dschaphorst_p3_music.util.UIState
 
 const val TAG = "SearchFragment"
 
+/**
+ * This fragment is the same as the [com.eitcat.dschaphorst_p3_music.ui.home.HomeFragment]
+ * escept that it gives the user the ability to send search terms to the Api music pull.
+ *
+ */
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
@@ -39,6 +44,15 @@ class SearchFragment : Fragment() {
         ViewModelProvider(requireActivity())[HomeViewModel::class.java]
     }
 
+    /**
+     * When fragment is created, create the [HomeViewModel]] for the RecyclerView and set the
+     * observable action that is dependant on the current [UIState].
+     *
+     * @param inflater Used to inflate the fragment
+     * @param container The containing ViewGroup
+     * @param savedInstanceState Use if needing to save instance during UI changes
+     * @return binding.root
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -96,6 +110,9 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Checks the network's internet connection, and switches to RoomDB if lost.
+     */
     override fun onResume() {
         super.onResume()
         if(!homeViewModel.networkState.checkInternetConnection()){
@@ -116,6 +133,9 @@ class SearchFragment : Fragment() {
         }
     }
 
+    /**
+     * Must remove _binding to prevent memory leaks.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -6,10 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.eitcat.dschaphorst_p3_music.data.model.Song
 
+/**
+ * The [RoomDatabase] that will be used for local storage.
+ *
+ */
 @Database(entities = [Song::class], version = 1)
 abstract class MusicDB : RoomDatabase(){
     abstract fun getMusicDAO(): MusicDAO
 
+    /**
+     * If database does not already exist, create it.
+     */
     companion object {
         @Volatile
         private var INSTANCE: MusicDB? = null

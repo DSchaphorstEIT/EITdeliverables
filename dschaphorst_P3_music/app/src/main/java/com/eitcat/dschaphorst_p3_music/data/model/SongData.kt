@@ -3,6 +3,10 @@ package com.eitcat.dschaphorst_p3_music.data.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * All properties of the [SongData] received from the [MusicNetworkData]
+ *
+ */
 data class SongData(
     @SerializedName("artistId")
     val artistId: Int? = null,

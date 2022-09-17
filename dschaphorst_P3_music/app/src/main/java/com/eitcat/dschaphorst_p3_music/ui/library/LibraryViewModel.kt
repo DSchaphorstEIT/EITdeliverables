@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class LibraryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is library Fragment"
+        value = "This is library Fragment, but it was unable to be implemented in the given time."
     }
     val text: LiveData<String> = _text
 }

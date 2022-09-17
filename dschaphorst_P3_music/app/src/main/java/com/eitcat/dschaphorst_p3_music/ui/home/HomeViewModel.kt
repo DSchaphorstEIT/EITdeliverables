@@ -27,6 +27,15 @@ import kotlinx.coroutines.withContext
 
 private const val TAG = "HomeViewModel"
 
+/**
+ * The primary ModelView used to perform the majority of the business logic, and is used
+ * by multiple fragments.
+ *
+ * @constructor
+ * Creates the data to be passed between fragments.
+ *
+ * @param application The application containing the fragments that are accessing this ViewModel
+ */
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val repo: LocalRepo
     private val _musicStatus: MutableLiveData<UIState> = MutableLiveData(UIState.LOADING)
@@ -39,12 +48,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         ExoPlayer.Builder(application.baseContext).build()
     }
 
+    /**
+     * Create a musicDAO for the repository to access and set the networkState
+     */
     init {
         val musicDAO = MusicDB.getDB(application).getMusicDAO()
         repo = LocalRepo(musicDAO)
         networkState = ConnectivityState(application.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager)
     }
 
+    /**
+     * Conditional access method used to pull the music data from the iTunes Api calls. Launches
+     * coroutine and emits UIStates for loading, success, or error.
+     *
+     * @param term The term that is used to search through the Api. Uses default value if nothing passed.
+     */
     fun pullMusicData(term : String = ""){
         viewModelScope.launch(Dispatchers.IO) {
             val flowHolder: Flow<UIState> = flow {
@@ -73,12 +91,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * Add song to the player's queue. If no song provided, adds the most recently viewed song.
+     *
+     * @param song THe song to add to queue. Default: curSong
+     */
     fun addSongToQueue(song: Song? = curSong){
         if (song != null) {
             player.addMediaItem(MediaItem.fromUri(song.previewUrl))
         }
     }
 
+    /**
+     * Checks if the player is not already playing, and starts it.
+     *
+     */
     fun play(){
         if(!player.isPlaying) {
             player.prepare()
@@ -86,10 +113,20 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * Adds most recent song list to the repository. Only should need to be called when
+     * a network connection is lost and thus Api calls will not be possible.
+     *
+     */
     fun addCurrentToDatabase(){
         repo.insertSongs(songHistList)
         repo.localMusicData = repo.getMusicData()
     }
 
+    /**
+     * Get the music stored in the local database.
+     *
+     * @return
+     */
     fun getFromDatabase(): LiveData<List<Song>> = repo.localMusicData
 }

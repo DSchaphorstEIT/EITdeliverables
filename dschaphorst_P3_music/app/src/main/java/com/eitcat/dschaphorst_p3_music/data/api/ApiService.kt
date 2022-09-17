@@ -7,6 +7,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * The [ApiService] that is used by the [ApiHelper] to access the [okHttpClient] and
+ * handle the [Retrofit.Builder] functionality.
+ * Holds the [musicService] [ApiHelper] object that will be used to interact with the Api calls.
+ */
 object ApiService {
 
     private val loggingInterceptor by lazy {

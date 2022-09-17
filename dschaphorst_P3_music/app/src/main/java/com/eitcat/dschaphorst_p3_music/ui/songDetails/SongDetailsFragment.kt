@@ -15,6 +15,11 @@ import com.eitcat.dschaphorst_p3_music.ui.home.HomeViewModel
 import com.google.android.exoplayer2.MediaItem
 import com.squareup.picasso.Picasso
 
+/**
+ * The fragment used to see the details of the specific song, and is where
+ * the user adds a song to the player's queue.
+ *
+ */
 class SongDetailsFragment : Fragment() {
 
     private var _binding: FragmentSongDetailsBinding? = null
@@ -23,6 +28,15 @@ class SongDetailsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    /**
+     * When fragment is created, populate the song's information on the view and set the
+     * button to add the currently selected song to the player.
+     *
+     * @param inflater Used to inflate the fragment
+     * @param container The containing ViewGroup
+     * @param savedInstanceState Use if needing to save instance during UI changes
+     * @return binding.root
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,11 +65,9 @@ class SongDetailsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
-
+    /**
+     * Must remove _binding to prevent memory leaks.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -13,6 +13,10 @@ import com.eitcat.dschaphorst_p3_music.R
 import com.eitcat.dschaphorst_p3_music.databinding.FragmentHomeBinding
 import com.eitcat.dschaphorst_p3_music.util.UIState
 
+/**
+ * This is the primary home fragment that will be displaying the default music search.
+ *
+ */
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -32,6 +36,15 @@ class HomeFragment : Fragment() {
         ViewModelProvider(requireActivity())[HomeViewModel::class.java]
     }
 
+    /**
+     * When fragment is created, create the [HomeAdapter] for the RecyclerView and set the
+     * observable action that is dependant on the current [UIState].
+     *
+     * @param inflater Used to inflate the fragment
+     * @param container The containing ViewGroup
+     * @param savedInstanceState Use if needing to save instance during UI changes
+     * @return binding.root
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -85,6 +98,9 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Checks the network's internet connection, and switches to RoomDB if lost.
+     */
     override fun onResume() {
         super.onResume()
         if(!homeViewModel.networkState.checkInternetConnection()){
@@ -105,6 +121,9 @@ class HomeFragment : Fragment() {
         }
     }
 
+    /**
+     * Must remove _binding to prevent memory leaks.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

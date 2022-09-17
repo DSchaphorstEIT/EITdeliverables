@@ -6,6 +6,10 @@ import com.eitcat.dschaphorst_p3_music.data.model.Song
 import io.reactivex.Completable
 import io.reactivex.Single
 
+/**
+ * The [Dao] that is used to access the [RoomDatabase]
+ *
+ */
 @Dao
 interface MusicDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

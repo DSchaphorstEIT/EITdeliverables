@@ -3,6 +3,10 @@ package com.eitcat.dschaphorst_p3_music.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * The data that will be used in the rest of the application. Able to be stored in RoomDB.
+ *
+ */
 @Entity(tableName = "song_list")
 data class Song(
     @PrimaryKey val trackID: Int,
@@ -18,6 +22,11 @@ data class Song(
     val artworkUrl100: String = "Invalid URL",
 )
 
+/**
+ * Maps a [List] of [SongData] into a [List] of [Song]
+ *
+ * @return [List] of [Song]
+ */
 fun List<SongData?>?
         .mapToSongList(): List<Song> =
     this?.map {
@@ -36,6 +45,11 @@ fun List<SongData?>?
         )
     } ?: emptyList()
 
+/**
+ * Maps a [SongData] object into a [Song] object
+ *
+ * @return [SongData] as [Song]
+ */
 fun SongData.mapToSong(): Song =
     Song(
         trackID = this.trackId ?: 0,
