@@ -1,8 +1,10 @@
 package com.eitcat.dschaphorst_p4_movies.data.api
 
 import com.eitcat.dschaphorst_p4_movies.data.model.MovieNetworkData
+import com.eitcat.dschaphorst_p4_movies.data.model.VideoNetworkData
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -12,32 +14,25 @@ import retrofit2.http.Query
  */
 interface MovieApi {
 
-    @GET(PATH_POP)
-    suspend fun getMoviePop(
+    @GET("{queryType}")
+    suspend fun getMovie(
+        @Path("queryType") queryType: String = PATH_DEFAULT,
         @Query("api_key") key: String = API_KEY,
         @Query("language") language: String = LANGUAGE,
         @Query("page") page: String = PAGES,
     ): Response<MovieNetworkData>
 
-    @GET(PATH_NOW)
-    suspend fun getMovieNow(
+    @GET("{movieID}/video")
+    suspend fun getVideo(
+        @Path("movieID") movieID: Int = 0,
         @Query("api_key") key: String = API_KEY,
         @Query("language") language: String = LANGUAGE,
         @Query("page") page: String = PAGES,
-    ): Response<MovieNetworkData>
-
-    @GET(PATH_SOON)
-    suspend fun getMovieSoon(
-        @Query("api_key") key: String = API_KEY,
-        @Query("language") language: String = LANGUAGE,
-        @Query("page") page: String = PAGES,
-    ): Response<MovieNetworkData>
+    ): Response<VideoNetworkData>
 
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/movie/"
-        private const val PATH_POP = "popular"
-        private const val PATH_NOW = "now_playing"
-        private const val PATH_SOON = "upcoming"
+        private const val PATH_DEFAULT = "popular"
         private const val LANGUAGE = "en-US"
         private const val PAGES = "1"
 

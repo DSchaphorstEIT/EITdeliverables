@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.eitcat.dschaphorst_p4_movies.R
 import com.eitcat.dschaphorst_p4_movies.databinding.FragmentHomeBinding
 import com.eitcat.dschaphorst_p4_movies.ui.viewmodel.MovieAdapter
 import com.eitcat.dschaphorst_p4_movies.ui.viewmodel.MovieViewModel
@@ -29,7 +31,7 @@ class HomeFragment : Fragment() {
     private val movieAdapter by lazy {
         MovieAdapter() {
             ViewModelProvider(requireActivity())[MovieViewModel::class.java].curMovie = it
-
+            binding.root.findNavController().navigate(R.id.action_navigation_home_to_detailsFragment)
         }
     }
 

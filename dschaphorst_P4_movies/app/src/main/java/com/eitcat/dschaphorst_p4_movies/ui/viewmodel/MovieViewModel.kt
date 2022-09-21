@@ -11,7 +11,6 @@ import com.eitcat.dschaphorst_p4_movies.data.model.nullChecker
 import com.eitcat.dschaphorst_p4_movies.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,7 +28,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     init {
         networkStatus = ConnectivityState(application
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
-        availableApiCalls = listOf("POPULAR", "NOW_PLAYING", "COMING_SOON")
+        availableApiCalls = listOf("popular", "now_playing", "upcoming")
     }
 
     fun pullMovieData(caller: String = availableApiCalls[0]){
@@ -37,14 +36,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             val flowHolder: Flow<UIState> = flow {
                 emit(UIState.LOADING)
                 try {
-                    val response = when (caller) {
-                        availableApiCalls[0] -> MovieApi.serviceApi.getMoviePop()
-                        availableApiCalls[1] -> MovieApi.serviceApi.getMovieNow()
-                        availableApiCalls[2] -> MovieApi.serviceApi.getMovieSoon()
-                        else -> throw InvalidApiCaller(
-                            "Given an invalid API call. Either change caller, or create a new API calling method for case: $caller"
-                        )
-                    }
+                    val response = MovieApi.serviceApi.getMovie(queryType = caller)
                     if (response.isSuccessful) {
                         response.body()?.let {
                             emit(UIState.SUCCESS(it.results.nullChecker()))

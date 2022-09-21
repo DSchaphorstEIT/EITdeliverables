@@ -59,7 +59,7 @@ class MovieAdapter(
  */
 class MovieViewHolder (private val binding: MovieCardBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(movie: Movie, onMovieClickHandler: (Movie) -> Unit) {
-        // TODO bind Movie to a MovieCardBinding
+        binding.movieTitle.text = movie.title
 
         binding.root.setOnClickListener{ onMovieClickHandler.invoke(movie) }
     }
