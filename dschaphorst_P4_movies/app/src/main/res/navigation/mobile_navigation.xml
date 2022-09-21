@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.eitcat.dschaphorst_p4_movies.ui.view.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_now"
+        android:name="com.eitcat.dschaphorst_p4_movies.ui.view.NowFragment"
+        android:label="@string/title_now"
+        tools:layout="@layout/fragment_now" >
+        <action
+            android:id="@+id/action_navigation_now_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_soon"
+        android:name="com.eitcat.dschaphorst_p4_movies.ui.view.SoonFragment"
+        android:label="@string/title_soon"
+        tools:layout="@layout/fragment_soon" >
+        <action
+            android:id="@+id/action_navigation_soon_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.eitcat.dschaphorst_p4_movies.ui.view.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+</navigation>
