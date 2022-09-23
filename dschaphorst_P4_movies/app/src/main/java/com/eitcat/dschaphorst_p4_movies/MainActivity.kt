@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener{ _, destination, _ ->
             if (destination.id != R.id.detailsFragment){
                 ViewModelProvider(this)[MovieViewModel::class.java].movieHistList = emptyList()
+            } else {
+                ViewModelProvider(this)[MovieViewModel::class.java].videoHistList = emptyList()
             }
         }
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -29,7 +29,7 @@ class NowFragment : Fragment() {
 
     private val movieAdapter by lazy {
         MovieAdapter() {
-            ViewModelProvider(requireActivity())[MovieViewModel::class.java].curMovie = it
+            movieViewModel.curMovie = it
             binding.root.findNavController().navigate(R.id.action_navigation_now_to_detailsFragment)
         }
     }
@@ -58,14 +58,14 @@ class NowFragment : Fragment() {
                     binding.loadingSpinner.visibility = View.GONE
                     binding.nowRecycle.visibility = View.VISIBLE
                     movieViewModel.movieHistList = state.movies
-                    movieAdapter.setData(movieViewModel.movieHistList)
+                    movieAdapter.setMovieData(movieViewModel.movieHistList)
                 }
                 is UIState.ERROR -> {
 
                     binding.loadingSpinner.visibility = View.GONE
                     binding.nowRecycle.visibility = View.GONE
                     AlertDialog.Builder(requireActivity())
-                        .setTitle("Error Loading Music")
+                        .setTitle("Error Loading Movies")
                         .setMessage(state.error.localizedMessage)
                         .setNegativeButton("DISMISS") { dialog, _ ->
                             dialog.dismiss()
@@ -83,7 +83,7 @@ class NowFragment : Fragment() {
         if (movieViewModel.movieHistList.isEmpty()) {
             movieViewModel.pullMovieData(apiCaller)
         } else {
-            movieAdapter.setData(movieViewModel.movieHistList)
+            movieAdapter.setMovieData(movieViewModel.movieHistList)
         }
 
         return binding.root

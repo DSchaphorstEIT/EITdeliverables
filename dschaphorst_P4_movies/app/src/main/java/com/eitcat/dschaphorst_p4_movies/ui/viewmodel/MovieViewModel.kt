@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.eitcat.dschaphorst_p4_movies.data.api.MovieApi
 import com.eitcat.dschaphorst_p4_movies.data.model.Movie
+import com.eitcat.dschaphorst_p4_movies.data.model.Video
 import com.eitcat.dschaphorst_p4_movies.data.model.nullChecker
 import com.eitcat.dschaphorst_p4_movies.util.*
 import kotlinx.coroutines.Dispatchers
@@ -21,9 +22,10 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     private val _movieLoadStatus: MutableLiveData<UIState> = MutableLiveData(UIState.LOADING)
     val movieLoadStatus: LiveData<UIState> get() = _movieLoadStatus
     val networkStatus: ConnectivityState
-    val availableApiCalls: List<String>
+    val availableApiCalls: List<String> // Consider moving this into the API
     var curMovie: Movie? = null
     var movieHistList: List<Movie> = emptyList()
+    var videoHistList: List<Video> = emptyList()
 
     init {
         networkStatus = ConnectivityState(application
@@ -39,7 +41,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
                     val response = MovieApi.serviceApi.getMovie(queryType = caller)
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            emit(UIState.SUCCESS(it.results.nullChecker()))
+                            emit(UIState.SUCCESS(movies = it.results.nullChecker()))
                         } ?: throw NullResponseFromServer("Movies are null")
                     } else {
                         throw FailureResponseFromServer(response.errorBody()?.string())
@@ -58,8 +60,33 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This Fragment has not yet been implemented"
+    fun pullVideoData(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val flowHolder: Flow<UIState> = flow {
+                emit(UIState.LOADING)
+                try {
+                    val response = MovieApi.serviceApi.getVideo(
+                        movieID = curMovie?.id ?: throw InvalidApiCaller("Invalid Movie")
+                    )
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            Log.d(TAG, "pullVideoData: ${it.results}")
+                            emit(UIState.SUCCESS(videos = it.results.nullChecker()))
+                        } ?: throw NullResponseFromServer("Videos are null")
+                    } else {
+                        throw FailureResponseFromServer(response.errorBody()?.string())
+                    }
+                } catch (e: Exception){
+                    emit(UIState.ERROR(e))
+                    Log.e(TAG, "Caught Error: ${e.localizedMessage}", e)
+                }
+            }
+            flowHolder.collect {
+                withContext(Dispatchers.Main){
+                    // Change to main thread
+                }
+                _movieLoadStatus.postValue(it)
+            }
+        }
     }
-    val text: LiveData<String> = _text
 }

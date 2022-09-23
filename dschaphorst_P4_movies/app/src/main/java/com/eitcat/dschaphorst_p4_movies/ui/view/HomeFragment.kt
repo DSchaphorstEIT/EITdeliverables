@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -30,7 +29,7 @@ class HomeFragment : Fragment() {
 
     private val movieAdapter by lazy {
         MovieAdapter() {
-            ViewModelProvider(requireActivity())[MovieViewModel::class.java].curMovie = it
+            movieViewModel.curMovie = it
             binding.root.findNavController().navigate(R.id.action_navigation_home_to_detailsFragment)
         }
     }
@@ -59,14 +58,13 @@ class HomeFragment : Fragment() {
                     binding.loadingSpinner.visibility = View.GONE
                     binding.homeRecycle.visibility = View.VISIBLE
                     movieViewModel.movieHistList = state.movies
-                    movieAdapter.setData(movieViewModel.movieHistList)
+                    movieAdapter.setMovieData(movieViewModel.movieHistList)
                 }
                 is UIState.ERROR -> {
-
                     binding.loadingSpinner.visibility = View.GONE
                     binding.homeRecycle.visibility = View.GONE
                     AlertDialog.Builder(requireActivity())
-                        .setTitle("Error Loading Music")
+                        .setTitle("Error Loading Movies")
                         .setMessage(state.error.localizedMessage)
                         .setNegativeButton("DISMISS") { dialog, _ ->
                             dialog.dismiss()
@@ -84,7 +82,7 @@ class HomeFragment : Fragment() {
         if (movieViewModel.movieHistList.isEmpty()) {
             movieViewModel.pullMovieData(apiCaller)
         } else {
-            movieAdapter.setData(movieViewModel.movieHistList)
+            movieAdapter.setMovieData(movieViewModel.movieHistList)
         }
 
         return binding.root
@@ -102,7 +100,7 @@ class HomeFragment : Fragment() {
                 .create()
                 .show()
         } else {
-            movieAdapter.setData(movieViewModel.movieHistList)
+            movieAdapter.setMovieData(movieViewModel.movieHistList)
         }
     }
 

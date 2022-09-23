@@ -25,3 +25,6 @@ data class Video(
     @SerializedName("type")
     val type: String? = null
 )
+
+fun List<Video?>?.nullChecker(): List<Video> =
+    this?.map { it ?: Video() } ?: emptyList()

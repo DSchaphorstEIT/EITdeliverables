@@ -6,6 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eitcat.dschaphorst_p4_movies.data.model.Movie
 import com.eitcat.dschaphorst_p4_movies.databinding.MovieCardBinding
 
+/**
+ * The [RecyclerView.Adapter] used to populate a [RecyclerView] with the given [List] of [Movie]
+ *
+ * @property movieDataSet Holds the [List] of [Movie] items.
+ * @property onMovieClickHandler Caller to be invoked when the [RecyclerView] item is clicked.
+ */
 class MovieAdapter(
     private val movieDataSet: MutableList<Movie> = mutableListOf(),
     private val onMovieClickHandler: (Movie) -> Unit
@@ -43,7 +49,7 @@ class MovieAdapter(
      *
      * @param movies List of [Movie] that will be displayed to the user.
      */
-    fun setData(movies: List<Movie>){
+    fun setMovieData(movies: List<Movie>){
         movieDataSet.clear()
         movies.forEach{
             movieDataSet.add(it)

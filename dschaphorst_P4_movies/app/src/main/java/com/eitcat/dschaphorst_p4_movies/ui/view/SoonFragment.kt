@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -59,14 +58,14 @@ class SoonFragment : Fragment() {
                     binding.loadingSpinner.visibility = View.GONE
                     binding.soonRecycle.visibility = View.VISIBLE
                     movieViewModel.movieHistList = state.movies
-                    movieAdapter.setData(movieViewModel.movieHistList)
+                    movieAdapter.setMovieData(movieViewModel.movieHistList)
                 }
                 is UIState.ERROR -> {
 
                     binding.loadingSpinner.visibility = View.GONE
                     binding.soonRecycle.visibility = View.GONE
                     AlertDialog.Builder(requireActivity())
-                        .setTitle("Error Loading Music")
+                        .setTitle("Error Loading Movies")
                         .setMessage(state.error.localizedMessage)
                         .setNegativeButton("DISMISS") { dialog, _ ->
                             dialog.dismiss()
@@ -84,7 +83,7 @@ class SoonFragment : Fragment() {
         if (movieViewModel.movieHistList.isEmpty()) {
             movieViewModel.pullMovieData(apiCaller)
         } else {
-            movieAdapter.setData(movieViewModel.movieHistList)
+            movieAdapter.setMovieData(movieViewModel.movieHistList)
         }
 
         return binding.root
