@@ -2,8 +2,11 @@ package com.eitcat.dschaphorst_p4_movies.ui.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.*
 import com.eitcat.dschaphorst_p4_movies.data.api.MovieApi
 import com.eitcat.dschaphorst_p4_movies.data.model.Movie
@@ -88,5 +91,12 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
                 _movieLoadStatus.postValue(it)
             }
         }
+    }
+
+    fun openYoutube(context: Context, video: Video) {
+        val url = "https://www.youtube.com/watch?v=" + video.key
+        val webpage: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webpage)
+        startActivity(context, intent, null)
     }
 }

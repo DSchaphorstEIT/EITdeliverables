@@ -33,7 +33,7 @@ class DetailsFragment : Fragment() {
 
     private val videoAdapter: VideoAdapter by lazy {
         VideoAdapter() {
-            // Use the ExoPlayer to play the selected video.
+            movieViewModel.openYoutube(requireActivity(), it)
         }
     }
 
