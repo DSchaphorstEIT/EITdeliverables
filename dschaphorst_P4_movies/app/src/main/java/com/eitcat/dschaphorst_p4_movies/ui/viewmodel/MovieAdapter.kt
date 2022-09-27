@@ -54,6 +54,7 @@ class MovieAdapter(
         movies.forEach{
             movieDataSet.add(it)
         }
+        movieDataSet.sortByDescending { it.popularity }
         notifyDataSetChanged()
     }
 }
@@ -66,7 +67,7 @@ class MovieAdapter(
 class MovieViewHolder (private val binding: MovieCardBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(movie: Movie, onMovieClickHandler: (Movie) -> Unit) {
         binding.movieTitle.text = movie.title
-
+        binding.popularity.text = "Pop: " + movie.popularity
         binding.root.setOnClickListener{ onMovieClickHandler.invoke(movie) }
     }
 }

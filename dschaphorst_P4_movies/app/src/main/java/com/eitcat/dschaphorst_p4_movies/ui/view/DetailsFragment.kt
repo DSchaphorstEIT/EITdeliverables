@@ -16,6 +16,7 @@ import com.eitcat.dschaphorst_p4_movies.databinding.FragmentNowBinding
 import com.eitcat.dschaphorst_p4_movies.ui.viewmodel.MovieViewModel
 import com.eitcat.dschaphorst_p4_movies.ui.viewmodel.VideoAdapter
 import com.eitcat.dschaphorst_p4_movies.util.UIState
+import com.squareup.picasso.Picasso
 
 const val TAG = "DetailsFragment"
 
@@ -44,7 +45,13 @@ class DetailsFragment : Fragment() {
     ): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
+        val baseImgUrl = "https://image.tmdb.org/t/p/w440_and_h660_face/"
         binding.detailsTitle.text = movieViewModel.curMovie?.title ?: "Title Missing"
+        Picasso.get()
+            .load(baseImgUrl + movieViewModel.curMovie?.posterPath)
+            .placeholder(R.drawable.ic_baseline_broken_image_24)
+            .error(R.drawable.ic_baseline_broken_image_24)
+            .into(binding.detailsCoverArt)
 
         binding.detailsRecycle.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
