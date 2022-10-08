@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="1dp"
+    android:padding="8dp"
+    app:cardCornerRadius="8dp"
+    android:elevation="8dp"
+    android:backgroundTint="@color/black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/spell_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"
+            app:fabSize="mini"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/spell_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:ellipsize="marquee"
+            android:maxLines="1"
+            app:layout_constraintStart_toEndOf="@id/spell_add"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/spell_school"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/spell_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="School"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:ellipsize="marquee"
+            android:maxLines="1"
+            app:layout_constraintStart_toEndOf="@id/spell_add"
+            app:layout_constraintTop_toBottomOf="@id/spell_name"
+            app:layout_constraintBottom_toTopOf="@id/spell_duration"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/spell_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Concentration"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:ellipsize="marquee"
+            android:maxLines="1"
+            app:layout_constraintStart_toEndOf="@id/spell_add"
+            app:layout_constraintTop_toBottomOf="@id/spell_school"
+            app:layout_constraintBottom_toTopOf="@id/spell_action"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/spell_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ritual"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:ellipsize="marquee"
+            android:maxLines="1"
+            app:layout_constraintStart_toEndOf="@id/spell_add"
+            app:layout_constraintTop_toBottomOf="@id/spell_duration"
+            app:layout_constraintBottom_toTopOf="@id/spell_components"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/spell_components"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V, S, M"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:ellipsize="marquee"
+            android:maxLines="1"
+            app:layout_constraintStart_toEndOf="@id/spell_add"
+            app:layout_constraintTop_toBottomOf="@id/spell_action"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/spell_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:ellipsize="marquee"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
