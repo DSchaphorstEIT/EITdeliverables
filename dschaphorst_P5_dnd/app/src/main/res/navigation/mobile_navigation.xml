@@ -9,11 +9,20 @@
         android:id="@+id/navigation_home"
         android:name="com.example.dschaphorst_p5_dnd.ui.view.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_spellDetailsFragment"
+            app:destination="@id/spellDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.dschaphorst_p5_dnd.ui.view.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/spellDetailsFragment"
+        android:name="com.example.dschaphorst_p5_dnd.ui.view.SpellDetailsFragment"
+        android:label="fragment_spell_details"
+        tools:layout="@layout/fragment_spell_details" />
 </navigation>

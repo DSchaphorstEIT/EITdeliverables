@@ -32,6 +32,45 @@ class SpellDetailsFragment : Fragment() {
 
         _binding = FragmentSpellDetailsBinding.inflate(inflater, container, false)
 
+        spellsViewModel.curSpell?.let {
+            binding.spellInfoGroup.visibility = View.VISIBLE
+            binding.spellName.text = it.name
+            binding.spellLvl.text = it.lvl.toString()
+            binding.spellSchool.text = it.school
+            if (it.ritual) {
+                binding.spellRitual.visibility = View.VISIBLE
+                binding.ritual.visibility = View.VISIBLE
+            } else {
+                binding.spellRitual.visibility = View.GONE
+                binding.ritual.visibility = View.GONE
+            }
+            if (it.range == ""){
+                binding.range.visibility = View.GONE
+                binding.spellRange.visibility = View.GONE
+            } else {
+                binding.range.visibility = View.GONE
+                binding.spellRange.visibility = View.GONE
+                binding.spellRange.text = it.range
+            }
+            val components = it.components + if (it.material != "") " (" + it.material + ")" else ""
+            binding.spellComponents.text = components
+            val duration = (if(it.concentration) "Concentration, " else "") + it.duration
+            binding.spellDuration.text = duration
+            binding.spellClasses.text = it.dndClass
+            binding.spellDescription.text = it.desc
+            if (it.higherLevel == "") {
+                binding.highlevel.visibility = View.GONE
+                binding.spellHighlvl.visibility = View.GONE
+            } else {
+                binding.highlevel.visibility = View.VISIBLE
+                binding.spellHighlvl.visibility = View.VISIBLE
+                binding.spellHighlvl.text = it.higherLevel
+            }
+        } ?: apply {
+            binding.spellInfoGroup.visibility = View.GONE
+            binding.spellName.text = "Invalid Spell"
+        }
+
         return binding.root
     }
 

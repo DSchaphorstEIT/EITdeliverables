@@ -5,10 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.example.dschaphorst_p5_dnd.data.api.Open5eRepository
+import com.example.dschaphorst_p5_dnd.data.model.domain.Spell
 import com.example.dschaphorst_p5_dnd.data.model.domain.mapToSpellList
-import com.example.dschaphorst_p5_dnd.util.FailureResponseFromServer
-import com.example.dschaphorst_p5_dnd.util.NullResponseFromServer
+import com.example.dschaphorst_p5_dnd.ui.viewmodel.adapter.SpellsPagingSource
 import com.example.dschaphorst_p5_dnd.util.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,26 +29,25 @@ class SpellsViewModel @Inject constructor(
 ) : ViewModel() {
     private val _spellsState: MutableLiveData<UIState> = MutableLiveData(UIState.LOADING)
     val spellsState: LiveData<UIState> get() = _spellsState
+    val flowPager = Pager(
+        PagingConfig(pageSize = repository.spellsData.size)
+    ) {
+        SpellsPagingSource(repository)
+    }.flow.cachedIn(viewModelScope)
+    var curSpell: Spell? = null
 
-    fun pullSpellsData(){
+    fun pullSpellsData() {
         viewModelScope.launch(ioDispatcher) {
             val flowHolder: Flow<UIState> = flow {
                 emit(UIState.LOADING)
                 try {
-                    val response = repository.getSpells()
-                    if (response.isSuccessful) {
-                        response.body()?.let {
-                            emit(UIState.SUCCESS(it.results.mapToSpellList()))
-                        } ?: throw NullResponseFromServer("Spells are null, verify response from API.")
-                    } else {
-                        throw FailureResponseFromServer(response.errorBody()?.string())
-                    }
+                    emit(UIState.SUCCESS(repository.getSpells().results.mapToSpellList()))
                 } catch (e: Exception) {
                     emit(UIState.ERROR(e))
-                    Log.e(TAG, "Caught Error: ${e.localizedMessage}", )
+                    Log.e(TAG, "Caught Error: ${e.localizedMessage}")
                 }
             }
-            flowHolder.collect{ _spellsState.postValue(it) }
+            flowHolder.collect { _spellsState.postValue(it) }
         }
     }
 

@@ -3,15 +3,19 @@ package com.example.dschaphorst_p5_dnd.ui.viewmodel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dschaphorst_p5_dnd.databinding.SpellCardBinding
 import com.example.dschaphorst_p5_dnd.data.model.SpellsData
 import com.example.dschaphorst_p5_dnd.data.model.domain.Spell
 
 class SpellsAdapter(
+    diffCallback: DiffUtil.ItemCallback<Spell>,
     private val spellsDataSet: MutableList<Spell> = mutableListOf(),
     private val onSpellClickHandler: (Spell) -> Unit
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+): PagingDataAdapter<Spell, RecyclerView.ViewHolder>(diffCallback) {
+/*RecyclerView.Adapter<RecyclerView.ViewHolder>() {*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         SpellViewHolder(SpellCardBinding.inflate(LayoutInflater.from(parent.context),

@@ -2,17 +2,27 @@ package com.example.dschaphorst_p5_dnd.ui.view
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dschaphorst_p5_dnd.R
 import com.example.dschaphorst_p5_dnd.databinding.FragmentHomeBinding
 import com.example.dschaphorst_p5_dnd.ui.viewmodel.SpellsAdapter
 import com.example.dschaphorst_p5_dnd.ui.viewmodel.SpellsViewModel
+import com.example.dschaphorst_p5_dnd.ui.viewmodel.adapter.SpellComparator
 import com.example.dschaphorst_p5_dnd.util.UIState
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
+private const val TAG = "HomeFragment"
 
 class HomeFragment : Fragment() {
 
@@ -27,8 +37,9 @@ class HomeFragment : Fragment() {
     }
 
     private val spellsAdapter by lazy {
-        SpellsAdapter() {
-            // TODO: navigate to Spell details
+        SpellsAdapter(SpellComparator) { spell ->
+            spellsViewModel.curSpell = spell
+            binding.root.findNavController().navigate(R.id.action_navigation_home_to_spellDetailsFragment)
         }
     }
 
@@ -42,6 +53,11 @@ class HomeFragment : Fragment() {
         binding.homeRecycle.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = spellsAdapter
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            spellsViewModel.flowPager.collectLatest {
+                spellsAdapter.submitData(it)
+            }
         }
 
         spellsViewModel.spellsState.observe(viewLifecycleOwner) { state ->

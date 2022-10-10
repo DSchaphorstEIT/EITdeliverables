@@ -1,8 +1,303 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.view.SpellDetailsFragment">
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Name"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+        android:textColor="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/spell_info_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="level,spell_lvl,school,spell_school,ritual,spell_ritual,casting,spell_casting,range,spell_range,components,spell_components,duration,spell_duration,classes,spell_classes,spell_description,highlevel,spell_highlvl" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/spell_lvl"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Level:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spell_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_lvl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/level"
+        app:layout_constraintTop_toTopOf="@id/level" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="School:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/level" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/school"
+        app:layout_constraintTop_toTopOf="@id/school" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/ritual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Ritual:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/school" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_ritual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Yes"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/ritual"
+        app:layout_constraintTop_toTopOf="@id/ritual" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/casting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Casting Time:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ritual" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_casting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/casting"
+        app:layout_constraintTop_toTopOf="@id/casting" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Range:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/casting" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/range"
+        app:layout_constraintTop_toTopOf="@id/range" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/components"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Components:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/range" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_components"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/components"
+        app:layout_constraintTop_toTopOf="@id/components" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Duration:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/components" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/duration"
+        app:layout_constraintTop_toTopOf="@id/duration" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/classes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="Classes:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/duration" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_classes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/classes"
+        app:layout_constraintTop_toTopOf="@id/classes" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/classes" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/highlevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text="At Higher Level:"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spell_description" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spell_highlvl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="4dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/highlevel"
+        app:layout_constraintTop_toTopOf="@id/highlevel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
