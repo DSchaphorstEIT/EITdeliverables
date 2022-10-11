@@ -89,6 +89,9 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+        binding.customSpells.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_navigation_home_to_customSpellsFragment)
+        }
 
         spellsViewModel.pullSpellsData()
         return binding.root

@@ -1,18 +1,22 @@
 package com.example.dschaphorst_p5_dnd.ui.view
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.dschaphorst_p5_dnd.R
+import com.example.dschaphorst_p5_dnd.databinding.FragmentCustomSpellsBinding
 import com.example.dschaphorst_p5_dnd.databinding.FragmentDashboardBinding
 import com.example.dschaphorst_p5_dnd.ui.viewmodel.SpellsViewModel
 
-class DashboardFragment : Fragment() {
+class CustomSpellsFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentCustomSpellsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,12 +32,16 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentCustomSpellsBinding.inflate(inflater, container, false)
 
-        val textView: TextView = binding.textDashboard
-        spellsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        binding.createSpell.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_customSpellsFragment_to_spellEditorFragment)
         }
+
+        binding.viewSpell.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_customSpellsFragment_to_spellDetailsFragment)
+        }
+
         return binding.root
     }
 

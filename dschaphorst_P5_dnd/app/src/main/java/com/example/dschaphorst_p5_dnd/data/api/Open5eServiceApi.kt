@@ -18,7 +18,7 @@ interface Open5eServiceApi {
         const val BASE_URL = "https://api.open5e.com/"
 
         private const val PATH_SPELLS = "spells"
-        private const val DEFAULT_PAGE = 1
+        private const val DEFAULT_PAGE = 2
         private const val DEFAULT_ORDER = "level_int"
         private const val DEFAULT_SOURCE = "wotc-srd"
     }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_spellDetailsFragment"
             app:destination="@id/spellDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_customSpellsFragment"
+            app:destination="@id/customSpellsFragment" />
     </fragment>
 
     <fragment
@@ -25,4 +28,21 @@
         android:name="com.example.dschaphorst_p5_dnd.ui.view.SpellDetailsFragment"
         android:label="fragment_spell_details"
         tools:layout="@layout/fragment_spell_details" />
+    <fragment
+        android:id="@+id/spellEditorFragment"
+        android:name="com.example.dschaphorst_p5_dnd.ui.view.SpellEditorFragment"
+        android:label="fragment_spell_editor"
+        tools:layout="@layout/fragment_spell_editor" />
+    <fragment
+        android:id="@+id/customSpellsFragment"
+        android:name="com.example.dschaphorst_p5_dnd.ui.view.CustomSpellsFragment"
+        android:label="fragment_custom_spells"
+        tools:layout="@layout/fragment_custom_spells" >
+        <action
+            android:id="@+id/action_customSpellsFragment_to_spellEditorFragment"
+            app:destination="@id/spellEditorFragment" />
+        <action
+            android:id="@+id/action_customSpellsFragment_to_spellDetailsFragment"
+            app:destination="@id/spellDetailsFragment" />
+    </fragment>
 </navigation>

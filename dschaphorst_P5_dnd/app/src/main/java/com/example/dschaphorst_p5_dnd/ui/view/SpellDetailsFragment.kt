@@ -1,6 +1,7 @@
 package com.example.dschaphorst_p5_dnd.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import com.example.dschaphorst_p5_dnd.databinding.FragmentHomeBinding
 import com.example.dschaphorst_p5_dnd.databinding.FragmentSpellDetailsBinding
 import com.example.dschaphorst_p5_dnd.ui.viewmodel.SpellsAdapter
 import com.example.dschaphorst_p5_dnd.ui.viewmodel.SpellsViewModel
+
+private const val TAG = "SpellDetailsFragment"
 
 class SpellDetailsFragment : Fragment() {
 
@@ -33,10 +36,10 @@ class SpellDetailsFragment : Fragment() {
         _binding = FragmentSpellDetailsBinding.inflate(inflater, container, false)
 
         spellsViewModel.curSpell?.let {
-            binding.spellInfoGroup.visibility = View.VISIBLE
             binding.spellName.text = it.name
             binding.spellLvl.text = it.lvl.toString()
             binding.spellSchool.text = it.school
+            Log.d(TAG, "onCreateView: ${it.ritual}")
             if (it.ritual) {
                 binding.spellRitual.visibility = View.VISIBLE
                 binding.ritual.visibility = View.VISIBLE
@@ -44,6 +47,7 @@ class SpellDetailsFragment : Fragment() {
                 binding.spellRitual.visibility = View.GONE
                 binding.ritual.visibility = View.GONE
             }
+            binding.spellCasting.text = it.castingTime
             if (it.range == ""){
                 binding.range.visibility = View.GONE
                 binding.spellRange.visibility = View.GONE
@@ -67,7 +71,6 @@ class SpellDetailsFragment : Fragment() {
                 binding.spellHighlvl.text = it.higherLevel
             }
         } ?: apply {
-            binding.spellInfoGroup.visibility = View.GONE
             binding.spellName.text = "Invalid Spell"
         }
 

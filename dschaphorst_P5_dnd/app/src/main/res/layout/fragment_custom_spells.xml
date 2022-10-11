@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.view.CustomSpellsFragment">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/custom_spells"
+        android:id="@+id/create_spell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Custom Spells"
+        android:text="Create Custom Spell"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view_spell"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/view_spell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Custom Spell"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_spells"
+        app:layout_constraintTop_toBottomOf="@id/create_spell"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <ProgressBar
-        android:id="@+id/loading_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
