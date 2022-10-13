@@ -29,12 +29,12 @@ class SpellsViewModel @Inject constructor(
 ) : ViewModel() {
     private val _spellsState: MutableLiveData<UIState> = MutableLiveData(UIState.LOADING)
     val spellsState: LiveData<UIState> get() = _spellsState
+    var curSpell: Spell? = null
     val flowPager = Pager(
-        PagingConfig(pageSize = repository.spellsData.size)
+        PagingConfig(pageSize = 30)
     ) {
         SpellsPagingSource(repository)
     }.flow.cachedIn(viewModelScope)
-    var curSpell: Spell? = null
 
     fun pullSpellsData() {
         viewModelScope.launch(ioDispatcher) {

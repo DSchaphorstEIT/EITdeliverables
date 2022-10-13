@@ -26,8 +26,7 @@ class Open5eRepositoryImpl @Inject constructor(
             response.body()?.let {
                 spellsData = it.results.mapToSpellList()
                 return it
-            }
-                ?: throw NullResponseFromServer("Spells are null, verify response from API.")
+            } ?: throw NullResponseFromServer("Spells are null, verify response from API.")
         } else {
             throw FailureResponseFromServer(response.errorBody()?.string())
         }

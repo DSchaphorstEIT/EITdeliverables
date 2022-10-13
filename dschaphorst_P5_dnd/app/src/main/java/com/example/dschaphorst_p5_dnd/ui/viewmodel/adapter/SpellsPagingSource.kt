@@ -8,6 +8,9 @@ import com.example.dschaphorst_p5_dnd.data.model.domain.mapToSpellList
 import com.example.dschaphorst_p5_dnd.util.NullResponseFromServer
 import javax.inject.Inject
 
+/**
+ * The paging source used to update the data for each consecutive page from the Open5eRepository API
+ */
 class SpellsPagingSource @Inject constructor(
     private val repository: Open5eRepository
 ) : PagingSource<Int, Spell>() {

@@ -1,0 +1,33 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 DND APP is designed to get easy access and reference to the many resources that players use within the game. The goal of this app is to build your characters with detailed information for things like spells, equipment, class features, ect. Pulling the existing data from the Open5eAPI to list the information, and attach them to your character, saved locally.\
+\
+Currently, only the spells functionality is in place, and none of the character creation (what should be in the dashboard fragment) has been implemented. The local room database had been causing issues so that is currently commented out. \
+\
+Since a quarter of my time working on this project was attempting to use a different API for a different app, I got a major late start on this application. That in addition to my significant amount of time spent either debugging, or preparing for the marketing phase, has left this project in an incomplete state. Another aspect that I probably spent too much time on was UI Formatting and data handling. I redesigned the spell cards and details twice in order to try and simulate an app I was referencing, and I clearly should have just focused on getting the full functionality first and worry about how it looks and handles the data as a lower priority. Additionally, I probably would have been fine to just leave everything as basic strings, but I did learn a lot from attempting to use special data mapping and enumerated values. An example being I attempted to translate the dndClass string from the API data into a list of Classes5e Enum, and attempted to make a multi-selector for the possible classes in the spell creator, but found it took a lot more to create that functionality. I think I have it figured out, but would take at least another day to implement. \
+\
+Even if not required by training, I will be continuing to work on this project, trying to implement as many features with the technologies I have learned as possible. Primarily because I would actually like to use this app myself, but I feel like I would have to make my own API repository for it to meet my expectations. This may turn into a large scale personal project that has potential to be released on the Google Play Store. \
+\
+\'97Completed Functionality/Technologies Implemented\'97\
+\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	\uc0\u8226 	}Kotlin programming language\
+{\listtext	\uc0\u8226 	}Fragments\
+{\listtext	\uc0\u8226 	}Activities\
+{\listtext	\uc0\u8226 	}Recycler View (Attempted Paging)\
+{\listtext	\uc0\u8226 	}Dependency Injection with Dagger Hilt\
+{\listtext	\uc0\u8226 	}MVVM architecture\
+{\listtext	\uc0\u8226 	}ViewModel\
+{\listtext	\uc0\u8226 	}LiveData\
+{\listtext	\uc0\u8226 	}Error Handling\
+{\listtext	\uc0\u8226 	}Asynchronous Operations Using Coroutines\
+{\listtext	\uc0\u8226 	}Navigation Component\
+{\listtext	\uc0\u8226 	}Kotlin Flows\
+}

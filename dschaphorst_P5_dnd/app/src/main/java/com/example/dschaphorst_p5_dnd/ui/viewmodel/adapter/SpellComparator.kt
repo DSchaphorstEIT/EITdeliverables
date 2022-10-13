@@ -3,6 +3,9 @@ package com.example.dschaphorst_p5_dnd.ui.viewmodel.adapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.dschaphorst_p5_dnd.data.model.domain.Spell
 
+/**
+ * Used for comparing items within the paging adapter.
+ */
 object SpellComparator : DiffUtil.ItemCallback<Spell>() {
     override fun areItemsTheSame(oldItem: Spell, newItem: Spell): Boolean {
         return oldItem.name == newItem.name

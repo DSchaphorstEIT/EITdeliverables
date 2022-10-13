@@ -61,6 +61,14 @@
                 android:hint="Spell Level"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
+<!--        -->
+<!--        <androidx.appcompat.widget.AppCompatSpinner-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="12dp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/level_edit"/>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/school_edit"
@@ -69,6 +77,8 @@
             android:layout_marginHorizontal="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:elevation="4dp"
+            app:helperText="Choose School"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
@@ -78,14 +88,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/level_edit">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/spell_school"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spell_school_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 android:layout_margin="4dp"
-                android:hint="Spell School"
-                android:inputType="text"/>
+                android:padding="4dp" />
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/spell_school"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:hint="Spell School"-->
+<!--                android:inputType="text"/>-->
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -279,6 +295,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:helperText="Choose a Class"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
@@ -287,14 +304,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/duration_edit">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/spell_classes"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spell_classes_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 android:layout_margin="4dp"
-                android:hint="Choose Classes"
-                android:inputType="text"/>
+                android:padding="4dp" />
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/spell_classes"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:hint="Choose Classes"-->
+<!--                android:inputType="text"/>-->
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

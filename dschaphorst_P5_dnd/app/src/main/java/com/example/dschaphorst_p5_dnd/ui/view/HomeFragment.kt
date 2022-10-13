@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
             binding.root.findNavController().navigate(R.id.action_navigation_home_to_customSpellsFragment)
         }
 
-        spellsViewModel.pullSpellsData()
+        spellsViewModel.pullSpellsData() // Remove this once paging is working.
         return binding.root
     }
 
