@@ -33,13 +33,15 @@ func findAvailableOrderingTimes(a: Int = 42, b: Int = 10, c: Int = 15, d: String
 }
 
 <h2>Assumptions Made</h2>
-* I do not have input validation, but I do have mild null handling. It is expected that all JSON
+<ul>
+ <li> I do not have input validation, but I do have mild null handling. It is expected that all JSON
 input file arrays will be formatted exactly the same as the sample input. I have created an
 enum class [OrderTypes] that should be updated if there are any more types added, but at a minimum,
-the three given types --pickup, curbside, or delivery-- should be included in the JSON provided.
-* If the input JSON is to be changed, the [fileName] in [AvailabilityViewModel] should be updated,
-and the file should be placed in *dschaphorst_modisCC_calendar/app/src/main/assets*
-* The final line of the instructions states that all date ranges that are in the past should be
+the three given types --pickup, curbside, or delivery-- should be included in the JSON provided.</li>
+ <li> If the input JSON is to be changed, the [fileName] in [AvailabilityViewModel] should be updated,
+and the file should be placed in ***dschaphorst_modisCC_calendar/app/src/main/assets*** </li>
+ <li> The final line of the instructions states that all date ranges that are in the past should be
 omitted from the output; however, the sample JSON was all dates in the past. Because of this, I
 have added a check for items in the past on line 51 in [AvailabilityViewModel], but it is 
-currently commented out. Please uncomment that line to restore that functionality.
+currently commented out. Please uncomment that line to restore that functionality. </li>
+</ul>
