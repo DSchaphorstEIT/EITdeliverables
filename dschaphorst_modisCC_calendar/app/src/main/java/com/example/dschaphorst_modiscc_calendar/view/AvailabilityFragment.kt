@@ -15,8 +15,6 @@ import com.example.dschaphorst_modiscc_calendar.databinding.FragmentAvailability
 import com.example.dschaphorst_modiscc_calendar.util.OrderTypes
 import com.example.dschaphorst_modiscc_calendar.view.adapter.AvailabilityAdapter
 
-private const val TAG = "AvailabilityFragment"
-
 class AvailabilityFragment : Fragment() {
 
     private var _binding: FragmentAvailabilityBinding? = null
