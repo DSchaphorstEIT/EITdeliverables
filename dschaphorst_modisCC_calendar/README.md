@@ -32,6 +32,12 @@ func findAvailableOrderingTimes(a: Int = 42, b: Int = 10, c: Int = 15, d: String
 // Start your code here...
 }
 
+<h2>What I Did</h2>
+This project is developed in an MVVM architecture using coroutine and GSON packages to handle this data.
+I imported the sample JSON and created objects using the GSON package. I then created local domain 
+data class to parse the date strings into LocalTimeDate objects to perform the time math onto.
+To display the outputs, I created a recycler view and output the list of strings into the view.
+
 <h2>Assumptions Made</h2>
 <ul>
  <li> I do not have input validation, but I do have mild null handling. It is expected that all JSON
@@ -39,7 +45,7 @@ input file arrays will be formatted exactly the same as the sample input. I have
 enum class [OrderTypes] that should be updated if there are any more types added, but at a minimum,
 the three given types --pickup, curbside, or delivery-- should be included in the JSON provided.</li>
  <li> If the input JSON is to be changed, the [fileName] in [AvailabilityViewModel] should be updated,
-and the file should be placed in ***dschaphorst_modisCC_calendar/app/src/main/assets*** </li>
+and the file should be placed in *dschaphorst_modisCC_calendar/app/src/main/assets* </li>
  <li> The final line of the instructions states that all date ranges that are in the past should be
 omitted from the output; however, the sample JSON was all dates in the past. Because of this, I
 have added a check for items in the past on line 51 in [AvailabilityViewModel], but it is 
